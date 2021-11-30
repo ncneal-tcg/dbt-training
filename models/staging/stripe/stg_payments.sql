@@ -1,12 +1,15 @@
-WITH payments AS (
-    SELECT 
-        id AS payment_id,
-        orderid AS order_id,
-        paymentmethod AS payment_method,
-        created,
+with payments as (
+    select 
+        id as payment_id,
+        orderid as order_id,
+        paymentmethod as payment_method,
         status,
-        amount
-    FROM dbt.dbt_nneal.stripe_payment
+
+        -- amount is stored in cents, convert it to dollars
+        amount / 100 as amount,
+        created as created_at
+
+    from dbt.dbt_nneal.stripe_payment
 )
 
 SELECT * FROM payments
