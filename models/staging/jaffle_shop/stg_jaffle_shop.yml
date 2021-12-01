@@ -16,7 +16,7 @@ models:
         description: Primary key for orders.
         tests:
           - unique
-          - not-null
+          - not_null
       - name: status
         description: "{{ doc('order_status') }}"
         tests:
