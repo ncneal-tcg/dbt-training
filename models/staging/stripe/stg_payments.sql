@@ -6,10 +6,10 @@ with payments as (
         status,
 
         -- amount is stored in cents, convert it to dollars
-        amount / 100 as amount,
+        {{ cents_to_dollars('amount', 2) }} as amount,
         created as created_at
 
     from {{ source('dbt_nneal','stripe_payment') }}
 )
 
-SELECT * FROM payments
+select * from payments
